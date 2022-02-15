@@ -2,7 +2,7 @@ import { pluginKey } from "src/constants"
 import {
   Config,
   ParsedPluginConfig,
-  PluginConfig,
+  PluginConfig
 } from "src/server/plugin/Config"
 import { describe, expect, it } from "vitest"
 
@@ -13,19 +13,19 @@ describe("Config", () => {
     const fooPluginConfig: PluginConfig = {
       "client-id": "clientId",
       "client-secret": "clientSecret",
-      org: "FOO_ORG",
+      "domain": "gmail.com",
     }
 
     const barPluginConfig: PluginConfig = {
       "client-id": "clientId",
       "client-secret": "clientSecret",
-      org: "BAR_ORG",
+      "domain": "gmail.com",
     }
 
     const minimalPluginConfig: PluginConfig = {
       "client-id": "clientId",
       "client-secret": "clientSecret",
-      org: false,
+      "domain": "gmail.com",
     }
 
     const fooConfig: Config = {
@@ -45,30 +45,30 @@ describe("Config", () => {
 
     it("from auth", () => {
       const pluginConfig = new ParsedPluginConfig(fooConfig)
-      expect(pluginConfig.org).toBe("FOO_ORG")
+      expect(pluginConfig.domain).toBe("gmail.com")
     })
 
     it("from middlewares", () => {
       const pluginConfig = new ParsedPluginConfig(barConfig)
-      expect(pluginConfig.org).toBe("BAR_ORG")
+      expect(pluginConfig.domain).toBe("gmail.com")
     })
 
     it("from auth as environment variable", () => {
       process.env.FOO_ORG = "foo-org"
       const pluginConfig = new ParsedPluginConfig(fooConfig)
-      expect(pluginConfig.org).toBe("foo-org")
+      expect(pluginConfig.domain).toBe("gmail.com")
     })
 
     it("from middlewares as environment variable", () => {
       process.env.BAR_ORG = "bar-org"
       const pluginConfig = new ParsedPluginConfig(barConfig)
-      expect(pluginConfig.org).toBe("bar-org")
+      expect(pluginConfig.domain).toBe("gmail.com")
     })
 
     it("parses boolean environment variables", () => {
       process.env.BAR_ORG = "false"
       const pluginConfig = new ParsedPluginConfig(barConfig)
-      expect(pluginConfig.org).toBe(false)
+      expect(pluginConfig.domain).toBe("gmail.com")
     })
 
     it("uses the documented defaults", () => {
@@ -79,20 +79,19 @@ describe("Config", () => {
           "clientSecret": "clientSecret",
           "config": {
             "auth": {
-              "github-oauth-ui": {
+              "google-oauth": {
                 "client-id": "clientId",
                 "client-secret": "clientSecret",
-                "org": false,
+                "domain": "gmail.com",
               },
             },
             "middlewares": {
-              "github-oauth-ui": {
+              "google-oauth": {
                 "enabled": true,
               },
             },
           },
-          "enterpriseOrigin": false,
-          "org": false,
+          "domain": "gmail.com",
           "packages": {},
           "repositoryAccess": true,
           "url_prefix": "",

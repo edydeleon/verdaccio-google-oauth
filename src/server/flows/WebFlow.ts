@@ -1,13 +1,13 @@
 import { IPluginMiddleware } from "@verdaccio/types"
 import { Application, Handler, Request } from "express"
 import { getPublicUrl } from "verdaccio/build/lib/utils"
-
 import { logger } from "../../logger"
 import { getAuthorizePath, getCallbackPath } from "../../redirect"
 import { buildAccessDeniedPage, buildErrorPage } from "../../statusPage"
 import { AuthCore } from "../plugin/AuthCore"
 import { AuthProvider } from "../plugin/AuthProvider"
 import { ParsedPluginConfig } from "../plugin/Config"
+
 
 export class WebFlow implements IPluginMiddleware<any> {
   constructor(
@@ -57,7 +57,7 @@ export class WebFlow implements IPluginMiddleware<any> {
 
     try {
       const code = this.provider.getCode(req)
-      const token = await this.provider.getToken(code)
+      const token = await this.provider.getToken(code, this.getRedirectUrl(req))
       const [username, groups] = await Promise.all([
         this.provider.getUsername(token),
         this.provider.getGroups(token),

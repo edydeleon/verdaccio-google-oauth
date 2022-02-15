@@ -6,9 +6,7 @@ import { ParsedPluginConfig } from "./Config"
 import { User, Verdaccio } from "./Verdaccio"
 
 export class AuthCore {
-  private readonly requiredGroup = this.config.org
-    ? "github/owner/" + this.config.org
-    : null
+  private readonly requiredGroup = 'google';
   private readonly configuredGroups = this.getConfiguredGroups()
 
   constructor(
@@ -17,7 +15,7 @@ export class AuthCore {
   ) {}
 
   /**
-   * Returns all permission groups used in the Verdacio config.
+   * Returns all permission groups used in the Verdaccio config.
    */
   getConfiguredGroups() {
     const configuredGroups: Record<string, true> = {}

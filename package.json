@@ -1,10 +1,10 @@
 {
   "$schema": "http://json.schemastore.org/package",
-  "name": "verdaccio-github-oauth-ui",
-  "version": "3.2.4",
+  "name": "verdaccio-google-oauth",
+  "version": "1.0.1",
   "keywords": [
     "authentication",
-    "github",
+    "google",
     "login",
     "npm",
     "oauth",
@@ -16,14 +16,17 @@
     "verdaccio-auth-plugin",
     "verdaccio-plugin"
   ],
-  "homepage": "https://github.com/n4bb12/verdaccio-github-oauth-ui/blob/master/README.md",
-  "bugs": "https://github.com/n4bb12/verdaccio-github-oauth-ui/issues",
-  "repository": "github:n4bb12/verdaccio-github-oauth-ui",
+  "homepage": "https://github.com/edydeleon/verdaccio-google-oauth#readme",
+  "bugs": "https://github.com/edydeleon/verdaccio-google-oauth/issues",
+  "repository": "github:edydeleon/verdaccio-google-oauth",
   "license": "MIT",
   "author": "Abraham Schilling",
+  "contributors": [
+    "Edy Deleon"
+  ],
   "main": "dist/server/index.js",
   "bin": {
-    "verdaccio-github-oauth-ui": "dist/cli/index.js"
+    "verdaccio-google-oauth-ui": "dist/cli/index.js"
   },
   "files": [
     "dist"
@@ -48,16 +51,14 @@
     "watch": "nodemon --watch src --ext ts,css --exec \"yarn update\""
   },
   "dependencies": {
-    "@octokit/oauth-methods": "^1.2.6",
-    "@octokit/request": "^5.6.3",
     "chalk": "^4.1.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "global-agent": "^3.0.0",
+    "got": "10.7",
     "lodash": "^4.17.21",
     "memory-cache": "^0.2.0",
     "minimist": "^1.2.0",
-    "octokit": "^1.7.1",
     "open": "^8.0.7",
     "ow": "^0.28.1",
     "query-string": "^7.1.1"

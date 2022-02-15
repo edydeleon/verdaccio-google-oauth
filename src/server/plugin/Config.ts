@@ -1,13 +1,13 @@
 import {
   Config as IncorrectVerdaccioConfig,
   PackageAccess as IncorrectVerdaccioPackageAccess,
-  Security,
+  Security
 } from "@verdaccio/types"
 import get from "lodash/get"
 import assert from "ow"
 import process from "process"
 import { PartialDeep, RemoveIndexSignature } from "type-fest"
-import { pluginKey, publicGitHubOrigin } from "../../constants"
+import { pluginKey } from "../../constants"
 import { logger } from "../../logger"
 
 //
@@ -31,9 +31,7 @@ export type VerdaccioConfig = Omit<
 export interface PluginConfig {
   "client-id": string
   "client-secret": string
-  org: string | false
-  "enterprise-origin"?: string | false
-  "repository-access"?: boolean
+  "domain"?: string
 }
 
 export interface Config extends VerdaccioConfig {
@@ -105,16 +103,6 @@ export class ParsedPluginConfig {
   public readonly packages = this.config.packages ?? {}
   public readonly url_prefix = this.config.url_prefix ?? ""
 
-  public readonly org =
-    getConfigValue<string | false>(
-      this.config,
-      "org",
-      assert.any(
-        assert.string.nonEmpty.not.startsWith(publicGitHubOrigin),
-        assert.boolean.false,
-      ),
-    ) ?? false
-
   public readonly clientId = getConfigValue<string>(
     this.config,
     "client-id",
@@ -126,17 +114,11 @@ export class ParsedPluginConfig {
     "client-secret",
     assert.string.nonEmpty,
   )
-
-  public readonly enterpriseOrigin =
-    getConfigValue<string | false>(
-      this.config,
-      "enterprise-origin",
-      assert.any(
-        assert.undefined,
-        assert.string.url.nonEmpty.not.startsWith(publicGitHubOrigin),
-        assert.boolean.false,
-      ),
-    ) ?? false
+  public readonly domain = getConfigValue<string>(
+    this.config,
+    "domain",
+    assert.optional.string,
+  )
 
   public readonly repositoryAccess =
     getConfigValue<boolean>(

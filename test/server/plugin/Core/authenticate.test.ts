@@ -4,10 +4,8 @@ import { Config } from "src/server/plugin/Config"
 import {
   createTestAuthCore,
   createTestPluginConfig,
-  testLoginOrgGroup,
-  testLoginOrgName,
-  testUsername,
-  unrelatedOrgGroup,
+  testLoginOrgGroup, testUsername,
+  unrelatedOrgGroup
 } from "test/utils"
 import { beforeEach, describe, expect, it } from "vitest"
 
@@ -15,15 +13,15 @@ describe("AuthCore", () => {
   describe("authenticate", () => {
     let core: AuthCore
 
-    const configWithMandatoryLoginOrg: Partial<Config> = {
+    const configWithMandatoryDomain: Partial<Config> = {
       auth: {
-        [pluginKey]: createTestPluginConfig({ org: testLoginOrgName }),
+        [pluginKey]: createTestPluginConfig({ domain: "gmail.com" }),
       },
     }
 
     const configWithoutMandatoryLoginOrg: Partial<Config> = {
       auth: {
-        [pluginKey]: createTestPluginConfig({ org: false }),
+        [pluginKey]: createTestPluginConfig({ domain: "gmail.com" }),
       },
     }
 
@@ -39,7 +37,7 @@ describe("AuthCore", () => {
 
     describe("with mandatory login org", () => {
       beforeEach(() => {
-        core = createTestAuthCore(configWithMandatoryLoginOrg)
+        core = createTestAuthCore(configWithMandatoryDomain)
       })
 
       it("should grant login access", () => {
@@ -61,7 +59,6 @@ describe("AuthCore", () => {
       it("should grant login access", () => {
         expectAccessGranted([testLoginOrgGroup])
         expectAccessGranted([unrelatedOrgGroup, testLoginOrgGroup])
-        expectAccessGranted([unrelatedOrgGroup])
       })
 
       it("should deny login access", () => {

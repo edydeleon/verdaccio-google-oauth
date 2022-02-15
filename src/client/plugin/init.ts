@@ -4,7 +4,7 @@ import {
   Credentials,
   isLoggedIn,
   saveCredentials,
-  validateCredentials,
+  validateCredentials
 } from "./credentials"
 import { interruptClick, parseQueryParams, retry } from "./lib"
 
@@ -44,7 +44,7 @@ export interface InitOptions {
 
 //
 // By default the login button opens a form that asks the user to submit credentials.
-// We replace this behaviour and instead redirect to the route that handles OAuth.
+// We replace this behavior and instead redirect to the route that handles OAuth.
 //
 
 export function init(options: InitOptions) {

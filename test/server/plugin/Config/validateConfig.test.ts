@@ -28,28 +28,6 @@ describe("Config", () => {
       })
     })
 
-    it("treats 'enterprise-origin' as optional", () => {
-      createConfig({
-        auth: {
-          [pluginKey]: { ...pluginConfig, "enterprise-origin": undefined },
-        },
-        middlewares: {
-          [pluginKey]: enabledPluginConfig,
-        },
-      })
-    })
-
-    it("treats 'repository-access' as optional", () => {
-      createConfig({
-        auth: {
-          [pluginKey]: { ...pluginConfig, "repository-access": undefined },
-        },
-        middlewares: {
-          [pluginKey]: enabledPluginConfig,
-        },
-      })
-    })
-
     it.fails("throws an error if the major version is below 5", () => {
       require("verdaccio/package.json").version = "4.3.2"
       createConfig({
@@ -92,10 +70,10 @@ describe("Config", () => {
       })
     })
 
-    it.fails("throws an error if 'org' is missing", () => {
+    it.fails("throws an error if 'domain' is missing", () => {
       createConfig({
         auth: {
-          [pluginKey]: { ...pluginConfig, ["org"]: undefined },
+          [pluginKey]: { ...pluginConfig, ["domain"]: undefined },
         },
         middlewares: {
           [pluginKey]: { enabled: true },
@@ -103,10 +81,10 @@ describe("Config", () => {
       })
     })
 
-    it.fails("throws an error if 'org' is true", () => {
+    it.fails("throws an error if 'domain' is true", () => {
       createConfig({
         auth: {
-          [pluginKey]: { ...pluginConfig, ["org"]: true },
+          [pluginKey]: { ...pluginConfig, ["domain"]: true },
         },
         middlewares: {
           [pluginKey]: { enabled: true },

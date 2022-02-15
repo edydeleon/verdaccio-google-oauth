@@ -7,7 +7,7 @@ import {
   Config,
   PackageAccess,
   ParsedPluginConfig,
-  PluginConfig,
+  PluginConfig
 } from "src/server/plugin/Config"
 import { Plugin } from "src/server/plugin/Plugin"
 import { Verdaccio } from "src/server/plugin/Verdaccio"
@@ -16,12 +16,12 @@ import Auth from "verdaccio/build/lib/auth"
 import { afterEach, beforeEach, vi } from "vitest"
 
 export const testLoginOrgName = "TEST_LOGIN_ORG"
-export const testLoginOrgGroup = `github/owner/${testLoginOrgName}`
+export const testLoginOrgGroup = `google`
 export const testOrgGroup = `github/owner/TEST_ORG`
 export const testTeamGroup = `${testOrgGroup}/team/TEST_TEAM`
 export const testRepoGroup = `${testOrgGroup}/repo/TEST_REPO`
 export const testUserName = "TEST_USER"
-export const testUserGroup = `github/owner/${testUserName}`
+export const testUserGroup = `google`
 export const testLegacyOrgGroup = "github/TEST_LEGACY_ORG"
 export const testLegacyTeamGroup = "github/TEST_LEGACY_ORG/TEST_LEGACY_TEAM"
 
@@ -61,7 +61,7 @@ export const testProviderId = "test-auth-provider"
 export const testLoginUrl = "test-login-url"
 export const testOAuthCode = "test-code"
 export const testOAuthToken = "test-token"
-export const testMajorVersion = 4
+export const testDomain = "gmail.com"
 export const testUiToken = "test-ui-token"
 export const testNpmToken = "test-npm-token"
 export const testErrorMessage = "expected-error"
@@ -74,8 +74,7 @@ export function createTestPluginConfig(
   return {
     "client-id": testClientId,
     "client-secret": testClientSecret,
-    org: false,
-    "repository-access": true,
+    "domain": testDomain,
     ...config,
   }
 }

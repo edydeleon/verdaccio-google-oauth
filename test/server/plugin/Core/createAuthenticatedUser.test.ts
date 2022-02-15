@@ -2,7 +2,7 @@ import { pluginKey } from "src/constants"
 import {
   createTestAuthCore,
   testProviderGroups,
-  testUsername,
+  testUsername
 } from "test/utils"
 import { describe, expect, it } from "vitest"
 
@@ -47,18 +47,19 @@ describe("AuthCore", () => {
 
       expect(user.real_groups).toMatchInlineSnapshot(`
         [
+          "google",
           "test-username",
         ]
       `)
     })
 
     it("real_groups contains the required login org if configured", async () => {
-      const org = "test-org"
+      const domain = "gmail.com"
       const providerGroups = []
       const core = createTestAuthCore({
         auth: {
           [pluginKey]: {
-            org,
+            "domain": domain,
             "client-id": "_",
             "client-secret": "_",
           },
@@ -72,7 +73,7 @@ describe("AuthCore", () => {
 
       expect(user.real_groups).toMatchInlineSnapshot(`
         [
-          "github/owner/test-org",
+          "google",
           "test-username",
         ]
       `)
@@ -110,6 +111,7 @@ describe("AuthCore", () => {
           "d",
           "e",
           "f",
+          "google",
           "test-username",
         ]
       `)

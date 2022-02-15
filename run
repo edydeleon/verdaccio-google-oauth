@@ -24,7 +24,7 @@ fail() {
 # Commands
 ##################################################
 
-pluginDir=plugins/verdaccio-github-oauth-ui
+pluginDir=plugins/verdaccio-google-oauth
 
 #
 # Remove the plugin from node_modules
@@ -91,7 +91,7 @@ test-publish() {
 }
 
 test-cli() {
-  # npx verdaccio-github-oauth-ui --registry http://localhost:4873
+  # npx verdaccio-google-oauth-ui --registry http://localhost:4873
   run test-cli ./dist/cli/index.js --registry http://localhost:4873
 
   test-publish
@@ -104,9 +104,9 @@ test-docker() {
   run test-docker docker build --tag verdaccio .
   run test-docker docker run \
     --publish 4873:4873 \
-    --env "GITHUB_ORG=$GITHUB_ORG" \
-    --env "GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID" \
-    --env "GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET" \
+    --env "DOMAIN=$DOMAIN" \
+    --env "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" \
+    --env "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" \
     --name verdaccio verdaccio
 }
 

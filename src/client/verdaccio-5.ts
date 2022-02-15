@@ -2,7 +2,7 @@ import { getUsageInfo, init, isLoggedIn } from "./plugin"
 
 const helpCardUsageInfoSelector = "#help-card .MuiCardContent-root span"
 const dialogUsageInfoSelector =
-  "#registryInfo--dialog-container .MuiDialogContent-root .MuiTypography-root span"
+  "#registryInfo--dialog-container .MuiDialogContent-root .MuiTypography-root span, #registryInfo--dialog-container .MuiDialogContent-root .MuiAccordionDetails-root span"
 const randomClass = "Os1waV6BSoZQKfFwNlIwS"
 
 async function copyToClipboard(text: string) {

@@ -7,15 +7,14 @@ storage: ./storage
 plugins: ./plugins
 
 middlewares:
-  github-oauth-ui:
+  google-oauth:
     enabled: true
 
 auth:
-  github-oauth-ui:
-    client-id: GITHUB_CLIENT_ID
-    client-secret: GITHUB_CLIENT_SECRET
-    org: false
-    enterprise-origin: false
+  google-oauth:
+    client-id: GOOGLE_CLIENT_ID
+    client-secret: GOOGLE_CLIENT_SECRET
+    domain: "gmail.com"
   htpasswd:
     file: ./htpasswd
 
@@ -30,11 +29,11 @@ security:
 
 packages:
   "@*/*":
-    access: github/owner/n4bb12-oauth-testing
-    publish: github/owner/n4bb12-oauth-testing
-    unpublish: github/owner/n4bb12-oauth-testing
+    access: $authenticated
+    publish: $authenticated
+    unpublish: $authenticated
 
   "**":
-    access: github/owner/n4bb12-oauth-testing
-    publish: github/owner/n4bb12-oauth-testing
-    unpublish: github/owner/n4bb12-oauth-testing
+    access: $authenticated
+    publish: $authenticated
+    unpublish: $authenticated
