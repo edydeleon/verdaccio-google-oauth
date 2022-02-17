@@ -69,7 +69,7 @@ auth:
   google-oauth:
     client-id: GOOGLE_CLIENT_ID
     client-secret: GOOGLE_CLIENT_SECRET
-    domain: "gmail.com"
+    domain: DOMAIN
 ```
 
 #### Using environment variables
@@ -89,7 +89,7 @@ These values can be obtained from the Google Credentials page at https://console
 
 #### `domain` (required, string)
 
-Users with this domain will be able to authenticate.
+Only Users with this domain will be able to authenticate. i.e. "gmail.com" or "your-domain.com"
 
 All others will be denied access.
 

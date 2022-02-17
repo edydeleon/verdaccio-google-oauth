@@ -14,7 +14,7 @@ auth:
   google-oauth:
     client-id: GOOGLE_CLIENT_ID
     client-secret: GOOGLE_CLIENT_SECRET
-    domain: "gmail.com"
+    domain: DOMAIN
   htpasswd:
     file: ./htpasswd
 
