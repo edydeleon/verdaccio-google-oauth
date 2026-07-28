@@ -1,3 +1,8 @@
+> **⚠️ This package is deprecated.**
+> Please use the new package [`@edyd/verdaccio-auth-oidc and @edyd/verdaccio-theme-oidc`](https://gitlab.com/edydeleon/verdaccio-plugins) on GitLab.
+
+---
+
 <h1 align="center">
   📦🔐 Verdaccio Google OAuth - With UI Support
 </h1>
